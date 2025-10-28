@@ -1,0 +1,19 @@
+i want develop just a lading for flower store
+with name
+خانه گل سحر آمیز بنچینو
+and i need be very nice and good design for a website with flower content
+my focus just is about being in good shape
+you can use
+framer motion
+shadcn
+antd
+magic ui
+and use next js with ts
+
+and website in persian
+just i want good landing for this flower sell website
+i put some images of flower in root project use them
+and i put logo too
+ask if you have questoin
+
+you can see and explor other design in figma or real websites to have some experince
