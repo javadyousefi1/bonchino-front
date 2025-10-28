@@ -1,10 +1,9 @@
 "use client";
 
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion } from "framer-motion";
 import { Sparkles, Heart, Gift, Phone, Leaf, Award, Star, ShoppingCart, Tag } from "lucide-react";
 import { Button } from "antd";
 import Image from "next/image";
-import { useRef } from "react";
 
 const flowerImages = [
   "0cee3862-8d24-4033-a1a4-e5bb342d9cbb.jpg",
@@ -150,20 +149,10 @@ const itemVariants = {
 };
 
 export default function Home() {
-  const heroRef = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: heroRef,
-    offset: ["start start", "end start"],
-  });
-
-  const opacity = useTransform(scrollYProgress, [0, 1], [1, 0]);
-  const scale = useTransform(scrollYProgress, [0, 1], [1, 0.8]);
-
   return (
     <main className="min-h-screen overflow-x-hidden">
       {/* Hero Section */}
       <section
-        ref={heroRef}
         className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-b from-[#f9f7f4] via-[#fefdfb] to-white"
       >
         {/* Background Decorative Elements */}
@@ -173,16 +162,8 @@ export default function Home() {
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-gradient-to-br from-[#c4a574]/5 to-transparent rounded-full blur-3xl"></div>
         </div>
 
-        <motion.div
-          style={{ opacity, scale }}
-          className="container mx-auto px-4 sm:px-6 lg:px-8 z-10 text-center max-w-6xl"
-        >
-          <motion.div
-            initial={{ scale: 0.9, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-            className="mb-8 sm:mb-12"
-          >
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 z-10 text-center max-w-6xl">
+          <div className="mb-8 sm:mb-12">
             <Image
               src="/logo.png"
               alt="لوگو بنچینو"
@@ -191,14 +172,9 @@ export default function Home() {
               className="mx-auto drop-shadow-2xl sm:w-[200px] sm:h-[200px]"
               priority
             />
-          </motion.div>
+          </div>
 
-          <motion.h1
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-4 sm:mb-6 px-4"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-          >
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-4 sm:mb-6 px-4">
             <span className="bg-gradient-to-r from-[#d4a574] via-[#c09560] to-[#b8884f] bg-clip-text text-transparent">
               خانه گل سحر آمیز
             </span>
@@ -206,25 +182,15 @@ export default function Home() {
             <span className="text-[#2d2d2d] text-3xl sm:text-4xl md:text-5xl lg:text-6xl">
               بنچینو
             </span>
-          </motion.h1>
+          </h1>
 
-          <motion.p
-            className="text-lg sm:text-xl md:text-2xl text-gray-600 mb-8 sm:mb-12 max-w-3xl mx-auto px-4 leading-relaxed"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
-          >
+          <p className="text-lg sm:text-xl md:text-2xl text-gray-600 mb-8 sm:mb-12 max-w-3xl mx-auto px-4 leading-relaxed">
             زیبایی طبیعت را به هدیه ببخشید
             <br className="hidden sm:block" />
             <span className="text-[#d4a574] font-medium">هر دسته گل، داستانی از عشق و زیبایی</span>
-          </motion.p>
+          </p>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.6, ease: [0.22, 1, 0.36, 1] }}
-            className="flex gap-3 sm:gap-4 justify-center flex-wrap px-4"
-          >
+          <div className="flex gap-3 sm:gap-4 justify-center flex-wrap px-4">
             <Button
               type="primary"
               size="large"
@@ -239,23 +205,15 @@ export default function Home() {
             >
               مشاهده گل‌ها
             </Button>
-          </motion.div>
-        </motion.div>
+          </div>
+        </div>
 
         {/* Scroll Indicator */}
-        <motion.div
-          className="absolute bottom-8 sm:bottom-10 left-1/2 -translate-x-1/2 hidden sm:block"
-          animate={{ y: [0, 10, 0] }}
-          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-        >
+        <div className="absolute bottom-8 sm:bottom-10 left-1/2 -translate-x-1/2 hidden sm:block">
           <div className="w-6 h-10 border-2 border-[#d4a574]/50 rounded-full flex items-start justify-center p-2">
-            <motion.div
-              className="w-1.5 h-1.5 bg-[#d4a574] rounded-full"
-              animate={{ y: [0, 16, 0] }}
-              transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-            />
+            <div className="w-1.5 h-1.5 bg-[#d4a574] rounded-full" />
           </div>
-        </motion.div>
+        </div>
       </section>
 
       {/* Features Section */}
