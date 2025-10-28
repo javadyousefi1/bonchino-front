@@ -1,0 +1,16 @@
+version: "3.9"
+
+services:
+  front:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: front
+    restart: always
+    ports:
+      - "8000:3000"
+    environment:
+      NODE_ENV: production
+      NEXT_TELEMETRY_DISABLED: 1
+    volumes:
+      - ./public:/app/public:ro
