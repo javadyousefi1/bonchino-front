@@ -1,11 +1,11 @@
 version: "3.9"
 
 services:
-  front:
+  front-bonchino:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: front
+    container_name: front-bonchino
     restart: always
     ports:
       - "8000:3000"
