@@ -1,5 +1,6 @@
 "use client";
 
+import { useRef } from "react";
 import { motion } from "framer-motion";
 import { Sparkles, Heart, Gift, Phone, Leaf, Award, Star, ShoppingCart, Tag } from "lucide-react";
 import { Button } from "antd";
@@ -149,20 +150,46 @@ const itemVariants = {
 };
 
 export default function Home() {
+  const ctaSectionRef = useRef<HTMLElement>(null);
+  const featuredProductsSectionRef = useRef<HTMLElement>(null);
+
+  const scrollToCTA = () => {
+    ctaSectionRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
+
+  const scrollToFeaturedProducts = () => {
+    featuredProductsSectionRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
+
   return (
     <main className="min-h-screen overflow-x-hidden">
       {/* Hero Section */}
       <section
         className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-b from-[#f9f7f4] via-[#fefdfb] to-white"
       >
-        {/* Background Decorative Elements */}
+        {/* Background Image with Blur */}
         <div className="absolute inset-0 overflow-hidden">
+          <Image
+            src="/bg.jpg"
+            alt="Background"
+            fill
+            className="object-cover blur-[5px]"
+            priority
+            sizes="100vw"
+            quality={90}
+          />
+          {/* Gradient Overlay */}
+          <div className="absolute inset-0 bg-gradient-to-b from-[#f9f7f4]/90 via-[#fefdfb]/80 to-white/90"></div>
+        </div>
+
+        {/* Background Decorative Elements */}
+        <div className="absolute inset-0 overflow-hidden z-0">
           <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-gradient-to-br from-[#d4a574]/10 to-transparent rounded-full blur-3xl"></div>
           <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-gradient-to-tr from-[#e8d5c4]/10 to-transparent rounded-full blur-3xl"></div>
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-gradient-to-br from-[#c4a574]/5 to-transparent rounded-full blur-3xl"></div>
         </div>
 
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 z-10 text-center max-w-6xl">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center max-w-6xl">
           <div className="mb-8 sm:mb-12">
             <Image
               src="/logo.png"
@@ -196,12 +223,14 @@ export default function Home() {
               size="large"
               icon={<Phone className="w-4 h-4 sm:w-5 sm:h-5" />}
               className="h-11 sm:h-14 px-6 sm:px-10 text-base sm:text-lg font-semibold shadow-lg hover:shadow-xl transition-all"
+              onClick={scrollToCTA}
             >
               تماس با ما
             </Button>
             <Button
               size="large"
               className="h-11 sm:h-14 px-6 sm:px-10 text-base sm:text-lg font-semibold border-2 border-[#d4a574] text-[#d4a574] hover:bg-[#d4a574] hover:text-white transition-all"
+              onClick={scrollToFeaturedProducts}
             >
               مشاهده گل‌ها
             </Button>
@@ -261,7 +290,7 @@ export default function Home() {
       </section>
 
       {/* Featured Products Section */}
-      <section className="py-16 sm:py-24 bg-gradient-to-b from-white to-[#faf8f5] relative overflow-hidden">
+      <section ref={featuredProductsSectionRef} className="py-16 sm:py-24 bg-gradient-to-b from-white to-[#faf8f5] relative overflow-hidden">
         <div className="absolute top-1/2 right-0 w-96 h-96 bg-gradient-to-l from-[#d4a574]/5 to-transparent rounded-full blur-3xl"></div>
 
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -552,7 +581,7 @@ export default function Home() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 sm:py-24 bg-gradient-to-br from-[#d4a574] via-[#c09560] to-[#b8884f] text-white relative overflow-hidden">
+      <section ref={ctaSectionRef} className="py-16 sm:py-24 bg-gradient-to-br from-[#d4a574] via-[#c09560] to-[#b8884f] text-white relative overflow-hidden">
         {/* Decorative Elements */}
         <div className="absolute top-0 left-0 w-64 h-64 bg-white/5 rounded-full blur-3xl"></div>
         <div className="absolute bottom-0 right-0 w-96 h-96 bg-white/5 rounded-full blur-3xl"></div>
@@ -581,7 +610,7 @@ export default function Home() {
               icon={<Phone className="w-4 h-4 sm:w-5 sm:h-5" />}
               className="h-12 sm:h-16 px-8 sm:px-12 text-base sm:text-xl font-bold bg-white text-[#d4a574] border-none hover:bg-gray-50 hover:scale-105 transition-all shadow-2xl"
             >
-              ۰۹۱۲۳۴۵۶۷۸۹
+              ۰۹۳۶۷۲۷۰۳۲۱
             </Button>
           </motion.div>
         </motion.div>
@@ -614,7 +643,7 @@ export default function Home() {
 
             <div className="border-t border-gray-700 pt-6">
               <p className="text-gray-500 text-sm sm:text-base">
-                © ۱۴۰۳ خانه گل سحر آمیز بنچینو. تمامی حقوق محفوظ است.
+                © ۱۴۰۴ خانه گل سحر آمیز بنچینو. تمامی حقوق محفوظ است.
               </p>
             </div>
           </div>
